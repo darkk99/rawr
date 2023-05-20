@@ -1,0 +1,13 @@
+current directory: /home/runner/rawr/.bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+/nix/store/zy37gk8w7qvzxcpvl74d2zh1zvfsixj0-ruby-3.1.2/bin/ruby -I /nix/store/zy37gk8w7qvzxcpvl74d2zh1zvfsixj0-ruby-3.1.2/lib/ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /home/runner/rawr/.bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230518-2399-v15ylh sitelibdir\=./.gem.20230518-2399-v15ylh clean
+
+current directory: /home/runner/rawr/.bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230518-2399-v15ylh sitelibdir\=./.gem.20230518-2399-v15ylh
+make: Nothing to be done for 'all'.
+
+current directory: /home/runner/rawr/.bundle/ruby/3.1.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230518-2399-v15ylh sitelibdir\=./.gem.20230518-2399-v15ylh install
