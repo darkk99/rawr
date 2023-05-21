@@ -2,7 +2,12 @@ require 'net/http'
 require 'json'
 require 'date'
 require 'colorize'
-require_relative 'check_error.rb'
+
+def check_error(res, list)
+    abort "#{"error:'.bold.red} An error occurred' if res.is_a?(Net::HTTPError)
+    abort "#{'error:'.bold.red} An error occurred" if res.is_a?(Net::HTTPError)
+    abort "#{'error:'.bold.red} #{list['error']}" if list['type'] == 'error'
+end
 
 def search(package, quiet=false)
   return 'error: `search` requires an argument' if package.delete(' ') == ''
@@ -19,8 +24,8 @@ def search(package, quiet=false)
 
   list = JSON.parse(res.body)
 
-  return '' if list['resultcount'] == 0
   check_error(res, list)
+  return '' if list['resultcount'] == 0
 
   (0..(list['resultcount'] - 1)).each do |i|
     current_item = list['results'][i]
