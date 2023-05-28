@@ -1,3 +1,33 @@
-#!/bin/sh
-cd ~/rawr
-bundle exec ruby --jit main.rb $@
+#!/usr/bin/env ruby
+require 'colorize'
+if ARGV.empty? then abort "#{'error:'.bold.red} rawr requires an argument" end
+
+Dir["lib/*"].each do |library|
+  require_relative library
+end
+
+command = ARGV.shift(1)[0][0, 1] # first letter of command
+args = ARGV.join(' ')
+if args.include?('--quiet') then
+  quiet = true
+  args.slice!('--quiet')
+end
+if args.include?('--info')
+  info = true
+  args.slice!('--info')
+end
+
+if command == 's'
+  if ARGV.include?('--quiet') then quiet = true else quiet = false end
+  search(args, quiet)
+elsif command == 'i'
+  if info then
+    info(args)
+  else
+    install(args)
+  end
+elsif command == 'q' || command == 'l'
+  query(args, quiet)
+elsif command == 'r'
+  remove(args)
+end

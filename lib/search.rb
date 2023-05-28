@@ -2,16 +2,11 @@ require 'net/http'
 require 'json'
 require 'date'
 require 'colorize'
+require_relative 'check_error.rb'
 
-def check_error(res, list)
-    abort "#{"error:'.bold.red} An error occurred' if res.is_a?(Net::HTTPError)
-    abort "#{'error:'.bold.red} An error occurred" if res.is_a?(Net::HTTPError)
-    abort "#{'error:'.bold.red} #{list['error']}" if list['type'] == 'error'
-end
 
 def search(package, quiet=false)
-  return 'error: `search` requires an argument' if package.delete(' ') == ''
-  package.slice!('--quiet') if package.include? '--quiet'
+  return "#{'error:'.bold.red} \`search\` requires an argument" if package.delete(' ') == ''
   uri = URI('https://aur.archlinux.org/rpc/')
   params = {
     :v => 5,
